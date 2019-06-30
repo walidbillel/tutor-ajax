@@ -15,14 +15,19 @@ function getNews() {
         queryKeyword +
         "&page=5&api-key=" +
         apiKey;
-
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (data) {
-        console.log(data)
-    });
+    if (!queryKeyword || !beginDate || !endDate){
+        alert('fill inputs')
+    } else {
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (data) {
+            console.log(data)
+        });
+    }
+  
 }
+
 $('#searchApi').on('submit', function (e) {
     e.preventDefault();
     getNews()
