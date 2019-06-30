@@ -1,6 +1,7 @@
-var apiKey = "DAzeGwzTUMG1zDIAHFktDLww58pnTsFM";
+
 
 function getNews() {
+    var apiKey = "DAzeGwzTUMG1zDIAHFktDLww58pnTsFM";
     var queryKeyword = $("#keyWord").val().trim();
     var beginDate = $("#beginDate").val().trim();
     var endDate = $("#endDate").val().trim();
@@ -13,7 +14,7 @@ function getNews() {
         endDateFormated +
         "&" +
         queryKeyword +
-        "&page=5&api-key=" +
+        "&page=10&api-key=" +
         apiKey;
     if (!queryKeyword || !beginDate || !endDate){
         alert('fill inputs')
@@ -22,7 +23,14 @@ function getNews() {
             url: queryURL,
             method: "GET"
         }).then(function (data) {
-            console.log(data)
+           
+            var articlesArray = data.response.docs;
+             console.log(articlesArray);
+             for (var i = 0; i<articlesArray.length; i++) {
+                 console.log(articlesArray[i]);
+                
+             }
+
         });
     }
   
@@ -30,6 +38,7 @@ function getNews() {
 
 $('#searchApi').on('submit', function (e) {
     e.preventDefault();
-    getNews()
+    getNews();
+    $('#searchApi').hide()
 })
 
