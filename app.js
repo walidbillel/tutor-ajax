@@ -25,10 +25,23 @@ function getNews() {
         }).then(function (data) {
            
             var articlesArray = data.response.docs;
-             console.log(articlesArray);
+            //  console.log(articlesArray);
              for (var i = 0; i<articlesArray.length; i++) {
                  console.log(articlesArray[i]);
-                
+                var ourDiv = $("<div>");
+                var headline = $("<h6>");
+                var snippet = $("<p>");
+                var web_url = $("<a>");
+              
+                headline.html(articlesArray[i].headline.main);
+                ourDiv.append(headline);                
+                snippet.html(articlesArray[i].snippet);
+                ourDiv.append(snippet);
+                web_url.text("Check Link");
+                web_url.attr("href", articlesArray[i].web_url)
+                ourDiv.append(web_url)
+                $("#results").append(ourDiv)
+
              }
 
         });
