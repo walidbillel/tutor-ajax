@@ -1,4 +1,4 @@
-
+$("#results").hide()
 
 function getNews() {
     var apiKey = "DAzeGwzTUMG1zDIAHFktDLww58pnTsFM";
@@ -33,14 +33,15 @@ function getNews() {
                 var snippet = $("<p>");
                 var web_url = $("<a>");
               
-                headline.html(articlesArray[i].headline.main);
+                headline.html(`Headline: ${articlesArray[i].headline.main}`);
                 ourDiv.append(headline);                
                 snippet.html(articlesArray[i].snippet);
                 ourDiv.append(snippet);
                 web_url.text("Check Link");
                 web_url.attr("href", articlesArray[i].web_url)
-                ourDiv.append(web_url)
-                $("#results").append(ourDiv)
+                ourDiv.append(web_url);
+                ourDiv.append("<hr>")
+                $("#results").append(ourDiv);
 
              }
 
@@ -52,6 +53,6 @@ function getNews() {
 $('#searchApi').on('submit', function (e) {
     e.preventDefault();
     getNews();
-    $('#searchApi').hide()
+    $("#results").show()
 })
 
